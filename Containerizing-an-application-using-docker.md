@@ -4,7 +4,7 @@ I will be containerizing the [AWS-Lift-and-Shift-project](https://github.com/dyb
 
 __SCENARIO:__
 
-We already have a multi tier application stack which has many services to be managed as an operations or DevOps team and these services are running on EC2 instances in the cloud environment. We also need to run continous changes and regular deployments.
+We already have a multi tier application stack running on EC2 instances in the cloud environment which has many services to be managed by the operations or DevOps team. We need to run continous changes and regular deployments on the application.
 
 __PROBLEMS:__
 
@@ -18,7 +18,7 @@ __SOLUTION:__
 
 __Tools to be used in containerizing this project:__
 
-- __Docker:__ which is a container run time environment.
+- Docker - container run time environment.
 - Nginx
 - Tomcat
 - Memcache
