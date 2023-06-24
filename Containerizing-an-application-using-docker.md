@@ -1,4 +1,4 @@
-## CONTAINERIZING AN APPLICATION USING DOCKER 
+## CONTAINERIZING JAVA STACK APPLICATION WITH DOCKER 
 
 I will be containerizing the [AWS-Lift-and-Shift-project](https://github.com/dybran/AWS-Lift-and-Shift-Project/blob/main/AWS-Lift-and-Shift-Project.md).
 
