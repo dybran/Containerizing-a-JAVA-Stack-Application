@@ -1,5 +1,7 @@
 ## CONTAINERIZING JAVA STACK APPLICATION WITH DOCKER 
 
+This documentation provides step-by-step instructions on how to containerize a Java application using Docker. Containerization allows you to package your application along with its dependencies into a self-contained unit called a Docker container, which can be easily deployed and run on any system with Docker installed.
+
 I will be containerizing the [AWS-Lift-and-Shift-project](https://github.com/dybran/AWS-Lift-and-Shift-Project/blob/main/AWS-Lift-and-Shift-Project.md).
 
 __SCENARIO:__
@@ -23,6 +25,7 @@ __Tools to be used in containerizing this project:__
 - Tomcat
 - Memcache
 - Rabbitmq
+- MySQL
 
 
 __STEPS:__
@@ -37,3 +40,19 @@ __ARCHITECTURAL DESIGN__
 ![](./images/zzz.PNG)
 
 First, fetch the source code from github, then write Dockerfiles for the services that needs customization. The base images mentioned in the Dockerfile will be pulled from dockerhub. Then build the images. Once the images are ready, we will mention all the containers with the image name in the docker compose file and test it. If this works well we will then push the images to dockerhub.
+
+__Finding the right base images from Dockerhub__
+
+For Base images, we will go to DockerHub which is Container Image Repository.
+
+For our application we need five images for our services:
+
+__Tomcat__ - Customized image will be created from base image 
+
+__MySQL__ - Customized image will be created from base image
+
+__Memcached__ - Use base image and override settings
+
+__RabbitMQ__ - Use base image and override settings
+
+__Nginx__ - Customized image will be created from base image
