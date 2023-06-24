@@ -23,4 +23,17 @@ __Tools to be used in containerizing this project:__
 - Tomcat
 - Memcache
 - Rabbitmq
-- 
+
+
+__STEPS:__
+- We should already be aware of the steps to setup the stack from the [AWS-Lift-and-Shift-project](https://github.com/dybran/AWS-Lift-and-Shift-Project/blob/main/AWS-Lift-and-Shift-Project.md).
+- Find the right base images from dockerhub for all the services that we will be using for this setup
+- Write Dockerfiles to customize images (mysql, tomcat and nginx) and  build the images.
+- Write a docker compose.yml file to run multiple containers.
+- Test the image and push to dockerhub.
+
+__ARCHITECTURAL DESIGN__
+
+![](./images/zzz.PNG)
+
+First, fetch the source code from github, then write Dockerfiles for the services that needs customization. The base images mentioned in the Dockerfile will be pulled from dockerhub. Then we will build the images. Once the images are ready, we will mention all the containers with the image name in the docker compose file and test it. If this works well we will then push the images to dockerhub.
