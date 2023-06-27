@@ -101,3 +101,57 @@ Log out and login then run
 
 ![](./images/ids.PNG)
 
+__Write the Dockerfiles for Tomcat, Mysql and Nginx__
+
+__For the Tomcat:__ This is where the application will reside. We need to build the artifact before building the image. When building the artifact, so many dependencies are downloaded which will increase the size of the image and we need to make the image as small as possible for portability.
+
+We will introduce a multi stage Dockerfile to help us build the artifacts in another image then copy over just the artifacts to another image and built.
+
+__Create a Dockerfile for the app - tomcat__
+
+```
+FROM openjdk:11 AS BUILD_ARTIFACT_IMAGE
+RUN apt update && apt install maven -y
+RUN git clone https://github.com/dybran/vprofile-project.git
+RUN cd vprofile-project && git checkout docker && mvn install
+
+FROM tomcat:9-jre11
+LABEL "Project"="Vprofile"
+LABEL "Author"="Solomon Onwuasoanya"
+LABEL "Description"="Building VprofileApp Image"
+RUN rm -rf /usr/local/tomcat/webapps/*
+COPY --from=BUILD_ARTIFACT_IMAGE vprofile-project/target/vprofile-v2.war /usr/local/tomcat/webapps/ROOT.war
+EXPOSE 8080
+CMD ["catalina.sh", "run"]
+```
+![](./images/appp.PNG)
+
+__Create a Dockerfile for DB - MySQL__
+
+```
+FROM mysql:8.0.33
+LABEL "Project"="Vprofile"
+LABEL "Author"="Solomon Onwuasoanya"
+LABEL "Description"="Building Vprofiledb image"
+
+ENV MYSQL_ROOT_PASSWORD="sa4la2xa"
+ENV MYSQL_DATABASE="accounts"
+
+
+ADD db_backup.sql docker-entrypoint-initdb.d/db_backup.sql
+```
+![](./images/vdbb.PNG)
+
+__Create a Dockerfile for Web - Nginx__
+
+```
+FROM nginx
+LABEL "Project"="Vprofile"
+LABEL "Author"="Solomon Onwuasoanya"
+LABEL "Description"="Building Vprofileweb image"
+
+RUN rm -rf /etc/nginx/conf.d/default.conf
+COPY nginvproapp.conf /etc/nginx/conf.d/vproapp.conf
+```
+![](./images/nginx.PNG)
+
