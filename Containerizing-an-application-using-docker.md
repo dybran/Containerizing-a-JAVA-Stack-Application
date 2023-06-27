@@ -101,6 +101,15 @@ Log out and login then run
 
 ![](./images/ids.PNG)
 
+Clone the repository
+
+`$ git clone -b docker https://github.com/dybran/vprofile-project.git`
+
+__N/B:__
+Make sure it is in the same folder as the __vagrantfile__.
+
+![](./images/cln.PNG)
+
 __Create the repositories in Dockerhub__
 
 Create repositories in dockerhub for the application, the database and the nginx images.
@@ -173,11 +182,14 @@ We will use information from [__vprofile-project\src\main\resources\application.
 version: '3.8'
 services:
   vprodb:
-    image: vprocontainers/vprofiledb
+    build:
+      context: ./Docker-files/web
+    image: dybran/vprofiledb
+    conainer_name: vprodb
     ports:
       - "3306:3306"
     volumes:
-      - vprodbdata:/var/lib/mysql
+      - volume-vprodb:/var/lib/mysql
     environment:
       - MYSQL_ROOT_PASSWORD=sa4la2xa
 
@@ -195,20 +207,28 @@ services:
       - RABBITMQ_DEFAULT_PASS=guest
 
   vproapp:
-    image: vprocontainers/vprofileapp
+    build:
+      context: ./Docker-files/app
+    image: dybran/vprofileapp
+    conainer_name: vproapp
     ports:
       - "8080:8080"
     volumes: 
-      - vproappdata:/usr/local/tomcat/webapps
+      - volume-vproapp:/usr/local/tomcat/webapps
 
   vproweb:
-    image: vprocontainers/vprofileweb
+    build:
+      context: ./Docker-files/web
+    image: dybran/vprofileweb
+    conainer_name: vproweb
     ports:
       - "80:80"
 volumes:
-  vprodbdata: {}
-  vproappdata: {}
+  volume-vprodb: {}
+  volume-vproapp: {}
 ```
-![](./images/dcy.PNG)
+__Build and Run__
+
+
 
 
