@@ -172,11 +172,11 @@ COPY nginvproapp.conf /etc/nginx/conf.d/vproapp.conf
 ```
 ![](./images/nginx.PNG)
 
-We will write a __docker-compose.yml__ file to build and test it together.
+Write a __docker-compose.yml__ file to build and test it together.
 
 __Create docker-compose.yml file__
 
-We will use information from [__vprofile-project\src\main\resources\application.properties__](https://github.com/dybran/Containerizing-a-JAVA-Stack-Application/blob/main/vprofile-project/src/main/resources/application.properties) to write the __docker-compose.yml__ file.
+Use information from [__vprofile-project\src\main\resources\application.properties__](https://github.com/dybran/Containerizing-a-JAVA-Stack-Application/blob/main/vprofile-project/src/main/resources/application.properties) to write the __docker-compose.yml__ file.
 
 
 ```
@@ -186,7 +186,6 @@ services:
     build:
       context: ./Docker-files/web
     image: dybran/vprofiledb
-    conainer_name: vprodb
     ports:
       - "3306:3306"
     volumes:
@@ -211,7 +210,6 @@ services:
     build:
       context: ./Docker-files/app
     image: dybran/vprofileapp
-    conainer_name: vproapp
     ports:
       - "8080:8080"
     volumes: 
@@ -221,7 +219,6 @@ services:
     build:
       context: ./Docker-files/web
     image: dybran/vprofileweb
-    conainer_name: vproweb
     ports:
       - "80:80"
 volumes:
@@ -238,7 +235,7 @@ Change into the __/vagrant/__
 
 `$ cd /vagrant/`
 
-we should see the __vprofile-project__
+Change into the __vprofile-project__
 
 `$ cd vprofile-project`
 
@@ -252,7 +249,7 @@ Then run
 
 check images 
 
-`$ dokcer images`
+`$ docker images`
 
 Check for running conainers
 
