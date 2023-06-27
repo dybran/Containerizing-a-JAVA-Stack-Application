@@ -36,7 +36,10 @@ services:
       - volume-vproapp:/usr/local/tomcat/webapps
 
   vproweb:
+    build:
+      context: ./Docker-files/web
     image: dybran/vprofileweb
+    conainer_name: vproweb
     ports:
       - "80:80"
 volumes:
