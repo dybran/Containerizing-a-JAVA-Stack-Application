@@ -30,11 +30,12 @@ __Tools to be used in containerizing this project:__
 
 __STEPS:__
 - We should already be aware of the steps to setup the stack from the [AWS-Lift-and-Shift-project](https://github.com/dybran/AWS-Lift-and-Shift-Project/blob/main/AWS-Lift-and-Shift-Project.md).
+- Fork the [vprofile-project](https://github.com/devopshydclub/vprofile-project) to my github.
 - Find the right base images from dockerhub for all the services that we will be using for this setup
 - Write Dockerfiles to customize images (mysql, tomcat and nginx) and  build the images.
 - Write a docker compose.yml file to run multiple containers.
 - Test the image and push to dockerhub.
-
+  
 __ARCHITECTURAL DESIGN__
 
 ![](./images/zzz.PNG)
@@ -245,20 +246,16 @@ we should see the __vprofile-project__
 
 Then run 
 
-`$ docker compose build`
-
-![](./images/buu.PNG) 
-
-When we run `$ docker images` we will see the images built
-
-![]
-
-Run 
-
 `$ docker compose up -d` 
 
-This will pull the images for the memcached and rabbitmq then run the containers.
+![](./images/compose-d.PNG)
 
-We can run `docker compose up -d` without running the `docker compose build`. `docker compose up -d` will first build the images and then run the containers.
+check images 
 
+`$ dokcer images`
 
+Check for running conainers
+
+`$ docker ps`
+
+![](./images/ps-a.PNG)
