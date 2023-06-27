@@ -101,6 +101,13 @@ Log out and login then run
 
 ![](./images/ids.PNG)
 
+__Create the repositories in Dockerhub__
+
+Create repositories in dockerhub for the application, the database and the nginx images.
+
+![](./images/qws.PNG)
+
+
 __Write the Dockerfiles for Tomcat, Mysql and Nginx__
 
 __For the Tomcat:__ This is where the application will reside. We need to build the artifact before building the image. When building the artifact, so many dependencies are downloaded which will increase the size of the image and we need to make the image as small as possible for portability.
@@ -154,4 +161,54 @@ RUN rm -rf /etc/nginx/conf.d/default.conf
 COPY nginvproapp.conf /etc/nginx/conf.d/vproapp.conf
 ```
 ![](./images/nginx.PNG)
+
+We will write a __docker-compose.yml__ file to build and test it together.
+
+__Create docker-compose.yml file__
+
+We will use information from [__vprofile-project\src\main\resources\application.properties__](https://github.com/dybran/Containerizing-a-JAVA-Stack-Application/blob/main/vprofile-project/src/main/resources/application.properties) to write the __docker-compose.yml__ file.
+
+
+```
+version: '3.8'
+services:
+  vprodb:
+    image: vprocontainers/vprofiledb
+    ports:
+      - "3306:3306"
+    volumes:
+      - vprodbdata:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=sa4la2xa
+
+  vprocache01:
+    image: memcached
+    ports:
+      - "11211:11211"
+
+  vpromq01:
+    image: rabbitmq
+    ports:
+      - "15672:15672"
+    environment:
+      - RABBITMQ_DEFAULT_USER=guest
+      - RABBITMQ_DEFAULT_PASS=guest
+
+  vproapp:
+    image: vprocontainers/vprofileapp
+    ports:
+      - "8080:8080"
+    volumes: 
+      - vproappdata:/usr/local/tomcat/webapps
+
+  vproweb:
+    image: vprocontainers/vprofileweb
+    ports:
+      - "80:80"
+volumes:
+  vprodbdata: {}
+  vproappdata: {}
+```
+![](./images/dcy.PNG)
+
 
