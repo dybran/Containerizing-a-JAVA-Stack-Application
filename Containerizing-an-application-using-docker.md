@@ -229,6 +229,36 @@ volumes:
 ```
 __Build and Run__
 
+Switch to root user
 
+`$ sudo -i`
+
+Change into the __/vagrant/__ 
+
+`$ cd /vagrant/`
+
+we should see the __vprofile-project__
+
+`$ cd vprofile-project`
+
+![](./images/bui.PNG)
+
+Then run 
+
+`$ docker compose build`
+
+![](./images/buu.PNG) 
+
+When we run `$ docker images` we will see the images built
+
+![]
+
+Run 
+
+`$ docker compose up -d` 
+
+This will pull the images for the memcached and rabbitmq then run the containers.
+
+We can run `docker compose up -d` without running the `docker compose build`. `docker compose up -d` will first build the images and then run the containers.
 
 

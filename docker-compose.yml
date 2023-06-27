@@ -2,9 +2,8 @@ version: '3.8'
 services:
   vprodb:
     build:
-      context: ./Docker-files/web
+      context: ./Docker-files/db
     image: dybran/vprofiledb
-    conainer_name: vprodb
     ports:
       - "3306:3306"
     volumes:
@@ -27,9 +26,8 @@ services:
 
   vproapp:
     build:
-      context: ./Docker-files/app
+      context: ./Docker-files/app/multistage
     image: dybran/vprofileapp
-    conainer_name: vproapp
     ports:
       - "8080:8080"
     volumes: 
@@ -39,7 +37,6 @@ services:
     build:
       context: ./Docker-files/web
     image: dybran/vprofileweb
-    conainer_name: vproweb
     ports:
       - "80:80"
 volumes:
