@@ -18,7 +18,7 @@ __PROBLEMS:__
 __SOLUTION:__
 - __Containers:__ We can solve the above problems using containers. Containers consume very low resources and suites very well for microservices design.  The image is packaged with all the dependencies and libraries so it is portable, reuseable and repeatable and can work across any environment.
 
-__Tools to be used in containerizing this project:__
+__Services to be used in containerizing this project:__
 
 - Docker - container run time environment.
 - Nginx
