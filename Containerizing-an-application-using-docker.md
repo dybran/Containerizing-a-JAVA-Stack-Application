@@ -178,7 +178,6 @@ __Create docker-compose.yml file__
 
 Use information from [__vprofile-project\src\main\resources\application.properties__](https://github.com/dybran/Containerizing-a-JAVA-Stack-Application/blob/main/vprofile-project/src/main/resources/application.properties) to write the __docker-compose.yml__ file.
 
-
 ```
 version: '3.8'
 services:
@@ -231,7 +230,7 @@ Switch to root user
 
 `$ sudo -i`
 
-Change into the __/vagrant/__ 
+Change into the __/vagrant/__
 
 `$ cd /vagrant/`
 
@@ -247,7 +246,7 @@ Then run
 
 ![](./images/compose-d.PNG)
 
-check images 
+Check images
 
 `$ docker images`
 
@@ -256,3 +255,51 @@ Check for running conainers
 `$ docker ps`
 
 ![](./images/ps-a.PNG)
+
+Then we can access the app from the webpage using the IP address
+
+![](./images/brower.PNG)
+
+Login using the log in details below
+
+Login: __admin_vp__
+
+Password: __admin_vp__
+
+![](./images/er.PNG)
+
+Verify our entire setup
+
+Succesful login shows that the database server is connected.
+
+To check if the rabbitMQ is functioning, we click on rabitMQ on the website.
+
+![](./images/po.PNG)
+
+To check the memcached, click on all users and select a user.
+
+![](./images/xz.PNG)
+
+Then go back and select the same user
+
+![](./images/xz2.PNG)
+
+We will find out that the first time we selected the user the data was from the Database and it took longer time to open but the second time it was faster to access and was from the cache.
+
+__Push to dockerhub__
+
+To push to dockerhub, we login
+
+`$ docker login`
+
+Provide dockerhub __username__ and __password__.
+
+Then push images
+
+`$ docker push <image-name>`
+
+![](./images/dlo.PNG)
+
+![](./images/dlo2.PNG)
+
+The DevOps Team works with the developement Team to understand the development/setup steps for the application and also understand the different services that is needed for the setup.
