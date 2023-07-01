@@ -82,13 +82,13 @@ Open the Vagrantfile and assign a unique IP address and increase the RAM size fo
 
 ![](./images/qwqw.PNG)
 
-Then run `$ vagrant up` to bring up the VM
+Clone the repository
 
-![](./images/vup.PNG)
-
-Install Docker Engine using the [Documentation](https://docs.docker.com/engine/install/ubuntu/).
+`$ git clone https://github.com/dybran/Containerizing-a-JAVA-Stack-Application.git`
 
 Then `$ vagrant ssh` to login
+
+Install Docker Engine using the [Documentation](https://docs.docker.com/engine/install/ubuntu/).
 
 Add the vagrant user to the docker group
 
@@ -102,9 +102,6 @@ Log out and login then run
 
 ![](./images/ids.PNG)
 
-Clone the repository
-
-`$ git clone -b docker https://github.com/dybran/vprofile-project.git`
 
 __N/B:__
 Make sure it is in the same folder as the __vagrantfile__.
